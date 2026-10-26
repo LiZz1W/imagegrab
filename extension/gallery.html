@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>图提取 · 图片画廊</title>
+  <link rel="stylesheet" href="gallery.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-logo" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="30" height="30" fill="none">
+          <rect x="2" y="2" width="28" height="28" rx="8" fill="url(#brandGradient)"/>
+          <circle cx="11" cy="11" r="2.6" fill="#fff" opacity=".9"/>
+          <path d="M6.5 23.5 13.5 16l4.5 4.5 3.5-3.5 4 6.5" stroke="#fff" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+          <defs>
+            <linearGradient id="brandGradient" x1="2" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#6366F1"/>
+              <stop offset=".55" stop-color="#8B5CF6"/>
+              <stop offset="1" stop-color="#06B6D4"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </span>
+      <div class="brand-text">
+        <h1>图提取 <span>ImageGrab</span></h1>
+        <p>商品图片画廊</p>
+      </div>
+    </div>
+    <a class="source-link" id="sourceLink" href="#" target="_blank" rel="noreferrer" hidden>
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"
+           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+      </svg>
+      <span id="sourceHost">查看原商品页</span>
+    </a>
+  </header>
+
+  <main>
+    <section class="summary">
+      <div class="summary-copy">
+        <h2 id="pageTitle">还没有提取记录</h2>
+        <p id="pageMeta">在商品详情页点击右下角的「获取图片」，图片就会出现在这里。</p>
+      </div>
+      <div class="stats" id="stats" hidden>
+        <div class="stat">
+          <strong id="totalCount">0</strong>
+          <span>提取图片</span>
+        </div>
+        <div class="stat stat-accent">
+          <strong id="selectedCount">0</strong>
+          <span>已勾选</span>
+        </div>
+        <div class="stat">
+          <strong id="filteredCount">0</strong>
+          <span>已过滤小图</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="toolbar" id="toolbar" hidden>
+      <div class="toolbar-left">
+        <button type="button" class="btn btn-ghost" id="selectAll">全选</button>
+        <button type="button" class="btn btn-ghost" id="invert">反选</button>
+        <span class="divider" aria-hidden="true"></span>
+        <span class="selection-text" id="selectionText">已选 0 / 0</span>
+      </div>
+      <div class="toolbar-right">
+        <button type="button" class="btn btn-primary" id="downloadPng">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/>
+          </svg>
+          下载选中 PNG
+        </button>
+        <button type="button" class="btn btn-secondary" id="downloadZip">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 8v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8"/>
+            <path d="M1 3h22v5H1z"/><path d="M10 12h4"/>
+          </svg>
+          打包 ZIP
+        </button>
+      </div>
+    </section>
+
+    <section class="grid" id="grid" aria-live="polite"></section>
+
+    <section class="empty" id="emptyState" hidden>
+      <div class="empty-illustration" aria-hidden="true">
+        <svg viewBox="0 0 120 100" width="140" height="116" fill="none">
+          <rect x="14" y="12" width="92" height="72" rx="14" fill="#EEF2FF" stroke="#C7D2FE" stroke-width="2"/>
+          <circle cx="41" cy="38" r="7" fill="#A5B4FC"/>
+          <path d="m24 72 21-21 14 14 11-11 22 18" stroke="#818CF8" stroke-width="4"
+                stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="70" y="62" width="38" height="28" rx="9" fill="#6366F1"/>
+          <path d="M89 68v11m0 0 4.5-4.5M89 79l-4.5-4.5" stroke="#fff" stroke-width="2.4"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3>还没有可以展示的图片</h3>
+      <p>打开淘宝 / 天猫 / 京东 / 拼多多的商品详情页，点击右下角悬浮的「获取图片」按钮。</p>
+      <ol class="empty-steps">
+        <li><span>1</span>打开商品详情页</li>
+        <li><span>2</span>点击「获取图片」</li>
+        <li><span>3</span>在这里勾选并下载 PNG</li>
+      </ol>
+    </section>
+  </main>
+
+  <div class="progress" id="progress" hidden role="status" aria-live="polite">
+    <span class="progress-spinner" aria-hidden="true"></span>
+    <div class="progress-body">
+      <div class="progress-text"><span id="progressText">正在处理…</span><span id="progressPercent">0%</span></div>
+      <div class="progress-track"><span id="progressBar"></span></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <div class="preview" id="preview" hidden>
+    <div class="preview-backdrop" data-close="1"></div>
+    <div class="preview-card" role="dialog" aria-modal="true" aria-label="图片预览">
+      <button type="button" class="preview-close" id="previewClose" aria-label="关闭预览">×</button>
+      <div class="preview-stage"><img id="previewImage" alt="图片预览"></div>
+      <div class="preview-meta">
+        <div>
+          <strong id="previewName">商品图</strong>
+          <span id="previewSize"></span>
+        </div>
+        <div class="preview-actions">
+          <a id="previewOriginal" href="#" target="_blank" rel="noreferrer">查看原图</a>
+          <button type="button" class="btn btn-primary" id="previewDownload">下载这张 PNG</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="libs/jszip.min.js"></script>
+  <script src="gallery.js"></script>
+</body>
+</html>

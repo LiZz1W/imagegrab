@@ -1,0 +1,33 @@
+# 本地测试与提交材料，不进入代码仓库
+探测/
+提交材料/
+chrome-profile/
+profile-*/
+
+# 临时脚本
+tools/probe_*.js
+tools/tmp_*.js
+tools/test_extension.js
+tools/final_test.js
+tools/preview_site.js
+tools/setup_edge_ext.js
+tools/enable_ext_final.js
+tools/inspect_jd_images.js
+tools/create_repo*.js
+tools/check_*.js
+tools/goto_login.js
+tools/wait_github_login.js
+tools/whoami.js
+tools/try_back.js
+tools/retry_jd.js
+tools/quick_session.js
+tools/repo_error.js
+tools/gh_status.js
+tools/probe_products.js
+tools/probe_tb.js
+
+# 系统 / Python
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

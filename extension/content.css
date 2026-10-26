@@ -1,0 +1,138 @@
+/* 图提取 ImageGrab - 注入样式（只作用于插件自己的节点） */
+
+#imagegrab-root {
+  position: fixed !important;
+  right: 24px !important;
+  bottom: 24px !important;
+  z-index: 2147483646 !important;
+  pointer-events: none !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Microsoft YaHei", sans-serif !important;
+}
+
+#imagegrab-fab {
+  pointer-events: auto !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  height: 48px !important;
+  padding: 0 20px !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 55%, #06b6d4 130%) !important;
+  color: #ffffff !important;
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  letter-spacing: 0.02em !important;
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.38), 0 3px 8px rgba(15, 23, 42, 0.18) !important;
+  cursor: pointer !important;
+  transition: transform 0.22s ease, box-shadow 0.22s ease, filter 0.22s ease !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+#imagegrab-fab:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 16px 32px rgba(79, 70, 229, 0.46), 0 5px 12px rgba(15, 23, 42, 0.22) !important;
+  filter: brightness(1.04) !important;
+}
+
+#imagegrab-fab:active {
+  transform: translateY(0) scale(0.98) !important;
+}
+
+#imagegrab-fab:focus-visible {
+  outline: 3px solid rgba(99, 102, 241, 0.45) !important;
+  outline-offset: 3px !important;
+}
+
+#imagegrab-fab:disabled {
+  cursor: progress !important;
+  opacity: 0.92 !important;
+  transform: none !important;
+}
+
+#imagegrab-fab svg {
+  flex: 0 0 auto !important;
+  display: block !important;
+}
+
+.imagegrab-fab-text {
+  white-space: nowrap !important;
+}
+
+.imagegrab-fab-spinner {
+  display: none !important;
+  width: 16px !important;
+  height: 16px !important;
+  border: 2px solid rgba(255, 255, 255, 0.38) !important;
+  border-top-color: #ffffff !important;
+  border-radius: 50% !important;
+  animation: imagegrab-spin 0.75s linear infinite !important;
+}
+
+#imagegrab-fab.imagegrab-loading svg {
+  display: none !important;
+}
+
+#imagegrab-fab.imagegrab-loading .imagegrab-fab-spinner {
+  display: inline-block !important;
+}
+
+#imagegrab-toast {
+  pointer-events: none !important;
+  position: absolute !important;
+  right: 0 !important;
+  bottom: 62px !important;
+  max-width: 320px !important;
+  padding: 10px 16px !important;
+  border-radius: 12px !important;
+  background: rgba(15, 23, 42, 0.92) !important;
+  color: #f8fafc !important;
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.28) !important;
+  opacity: 0 !important;
+  transform: translateY(6px) !important;
+  transition: opacity 0.25s ease, transform 0.25s ease !important;
+}
+
+#imagegrab-toast.imagegrab-toast-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+#imagegrab-toast.imagegrab-toast-success {
+  background: rgba(5, 150, 105, 0.94) !important;
+}
+
+#imagegrab-toast.imagegrab-toast-error {
+  background: rgba(190, 24, 93, 0.94) !important;
+}
+
+@keyframes imagegrab-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 640px) {
+  #imagegrab-root {
+    right: 14px !important;
+    bottom: 16px !important;
+  }
+
+  #imagegrab-fab {
+    height: 44px !important;
+    padding: 0 16px !important;
+    font-size: 14px !important;
+  }
+
+  #imagegrab-toast {
+    max-width: 72vw !important;
+  }
+}
