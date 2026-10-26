@@ -2,6 +2,9 @@
 
 一个真实可用的 Chrome 电商图片下载扩展：在淘宝、天猫、京东、拼多多商品详情页一键提取全部商品图片，集中预览、自由勾选，批量下载为 PNG 或打包 ZIP。
 
+- 在线官网：<https://lizz1w.github.io/imagegrab/>
+- GitHub 仓库：<https://github.com/LiZz1W/imagegrab>
+
 配套官网部署在 GitHub Pages。插件使用 Manifest V3，纯本地处理，不上传任何图片。
 
 ## 目录结构
@@ -60,7 +63,7 @@ python -m http.server 8000 --directory docs
 1. 将本目录推送到 GitHub 仓库。
 2. 进入仓库 `Settings → Pages`。
 3. Source 选择 `Deploy from a branch`，分支选 `main`，目录选 `/docs`。
-4. 保存后访问 `https://<用户名>.github.io/imagegrab/`。
+4. 保存后访问 <https://lizz1w.github.io/imagegrab/>。
 
 ## 技术栈
 
